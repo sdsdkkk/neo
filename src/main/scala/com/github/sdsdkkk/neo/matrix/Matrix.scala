@@ -23,6 +23,7 @@ object Matrix {
 class Matrix(data: Vector[MatrixLine]) {
   val height = data.size
   val width = data.map(_.size).max
+  val content = matricize(data)
 
   def horizontalSplit: (Matrix, Matrix) = {
     ???
@@ -34,5 +35,22 @@ class Matrix(data: Vector[MatrixLine]) {
 
   def inverse: Matrix = {
     ???
+  }
+
+  def matricize(d: Vector[MatrixLine]): Vector[MatrixLine] = {
+    d.map(l =>
+      if (l.size < width) {
+        padding(l)
+      } else {
+        l
+      }
+    )
+  }
+
+  def padding(line: MatrixLine): MatrixLine = {
+    if (line.size < width)
+      padding(line :+ 0.toDouble)
+    else
+      line
   }
 }
