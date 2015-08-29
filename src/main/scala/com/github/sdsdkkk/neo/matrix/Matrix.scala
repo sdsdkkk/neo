@@ -60,7 +60,12 @@ class Matrix(val data: Vector[MatrixLine]) {
     (new Matrix(matrices._1), new Matrix(matrices._2))
   }
 
-  def inverse: Matrix = {
+  def transpose: Matrix = {
+    val result = for (i <- 0 to (width - 1)) yield data.map(_(i))
+    new Matrix(result.toVector)
+  }
+
+  def inverse: Option[Matrix] = {
     ???
   }
 }
